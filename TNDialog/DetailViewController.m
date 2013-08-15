@@ -121,7 +121,7 @@ int rowCount;
 
     [dict setObject:_selectedType forKey:@"type"];
     for (int i=0; i<rowCount; i++) {
-        [dict setObject:((QEntryTableViewCell*)[[root elementWithIndex:[NSIndexPath indexPathForItem:i inSection:0]] getCellForTableView:nil controller:nil]).backgroundColor.text forKey:((QEntryTableViewCell*)[[root elementWithIndex:[NSIndexPath indexPathForItem:i inSection:0]] getCellForTableView:nil controller:nil]).textLabel.text];
+        [dict setObject:((QEntryTableViewCell*)[[root elementWithIndex:[NSIndexPath indexPathForItem:i inSection:0]] getCellForTableView:nil controller:nil]).textField.text forKey:((QEntryTableViewCell*)[[root elementWithIndex:[NSIndexPath indexPathForItem:i inSection:0]] getCellForTableView:nil controller:nil]).textLabel.text];
     }
     
     //    NSMutableArray *arrayElement = [[NSMutableArray alloc] init];
