@@ -11,80 +11,57 @@
 @interface SaveFormViewController ()
 
 @end
-NSInteger rowsAmount;
-QEntryTableViewCell *cells;
+
 QRootElement *root;
-int rowCount;
 UITableView *tableView;
-UIButton *saveButton;
-UIAlertView *alert;
+
 @implementation SaveFormViewController
 @synthesize dictSection = _dictSection;
 @synthesize arrayElement = _arrayElement;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.view.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
-        
+        ////Initial data 
+        _dictSection = [[NSMutableDictionary alloc] init];
+        _arrayElement = [[NSMutableArray alloc] init];
     }
     return self;
-}
-
--(void)viewDidAppear:(BOOL)animated
-{
-    if ([_dictSection count] > 0) {
-        root = [[QRootElement alloc]initWithJSON:_dictSection andData:nil];
-    }
-    [tableView reloadData];
-    
-    
-    //Save Button
-    [saveButton setFrame: CGRectMake(tableView.frame.size.width/2 - 30,50*rowCount, 60, 30)];
-    [saveButton setTitle:@"SAVE" forState:UIControlStateNormal];
-    [saveButton addTarget:self action:@selector(saveForm) forControlEvents:UIControlEventTouchDown];
-    [tableView addSubview:saveButton];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _dictSection = [[NSMutableDictionary alloc] init];
-    _arrayElement = [[NSMutableArray alloc]init];
-    saveButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [saveButton setFrame:CGRectMake(tableView.frame.size.width/2 - 30,50, 60, 30)];
     
-    rowCount = 0;
-
-    
-    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSArray *dirContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:documentsDir error:nil];
-    NSArray *jsonArray = [dirContents filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self ENDSWITH '.json'"]];
-
-    
-    root = [[QRootElement alloc] init];
-//    QSection *sectionSamples = [[QSection alloc] init];
-    root.grouped = YES;
-    root.title = @"QuickDialog!";
-    
-    
-//    for (int i =0; i<[jsonArray count]; i++) {
-//        NSString *str = [[NSString alloc] initWithString:[[jsonArray objectAtIndex:1] stringByReplacingOccurrencesOfString:@".json" withString:@""]];
-//        //[sectionSamples addElement:[[QRootElement alloc] initWithJSONFile:str]];
-//        root = [[QRootElement alloc] initWithJSONFile:str];
-//    }
-//    [root addSection:sectionSamples];
-    
+    //init Table View
     //TableVeiw
-    tableView = [[UITableView alloc] initWithFrame:CGRectMake(10,40, 300, 500) style:UITableViewStyleGrouped];
+    tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.backgroundColor = [UIColor blueColor];
     [self.view addSubview:tableView];
-    
+
+    //Add Save Button to navigationbar
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveForm:)];
+
 }
--(void)saveForm
+
+-(void)viewDidAppear:(BOOL)animated
 {
+    
+    ///Init RootElent If Created Form has Element
+    if ([_dictSection count] > 0) {
+        root = [[QRootElement alloc]initWithJSON:_dictSection andData:nil];
+        
+        [tableView reloadData];
+    }
+}
+
+-(void)saveForm:(id)sender
+{
+    ///Alert View when Save Action to input file name
+    UIAlertView *alert;
     //Alert View
     alert = [[UIAlertView alloc] initWithTitle:@"Save" message:@"Input file name." delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:@"Save", nil];
     alert.delegate = self;
@@ -94,15 +71,17 @@ UIAlertView *alert;
 }
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    
+    ////Save Json File or cancel from alert View
     if (buttonIndex == 0) {
         NSLog(@"Cancel");
     }
     else
     {
         
-        NSLog(@"%@",[alert textFieldAtIndex:0].text);
+        NSLog(@"%@",[alertView textFieldAtIndex:0].text);
         NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-        NSString *filePath = [[[documentsDir stringByAppendingString:@"/"] stringByAppendingString:[alert textFieldAtIndex:0].text] stringByAppendingString:@".json"];
+        NSString *filePath = [[[documentsDir stringByAppendingString:@"/"] stringByAppendingString:[alertView textFieldAtIndex:0].text] stringByAppendingString:@".json"];
         NSError *error = nil;
         NSData* json = [NSJSONSerialization dataWithJSONObject:_dictSection options:0 error:nil];
         [json writeToFile:filePath options:NSDataWritingAtomic error:&error];
@@ -122,18 +101,19 @@ UIAlertView *alert;
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    rowCount++;
-    return ([((QSection*)[root.sections objectAtIndex:section]).elements count]+1);
+    return (1 + [((QSection*)[root.sections objectAtIndex:section]).elements count]);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell;
+    
+    NSString *CellIdentifier = @"Cell";
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
+    NSInteger rowsAmount;
     rowsAmount = [tableView numberOfRowsInSection:[indexPath section]];
     
     if (indexPath.row == rowsAmount-1 ) {
@@ -141,25 +121,22 @@ UIAlertView *alert;
     }
     else
     {
-//        QSection *section = [root.sections objectAtIndex:0];
-//        QElement *element = [section.elements objectAtIndex:0];
-
-//        cells = [[root elementWithKey:[_listData objectAtIndex:indexPath.row]] getCellForTableView:nil controller:nil];
-        cells = [[root elementWithIndex:indexPath] getCellForTableView:nil controller:nil];
-        cell = cells;
+        cell = [[root elementWithIndex:indexPath] getCellForTableView:nil controller:nil];
         
     }
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    NSInteger rowsAmount;
+    rowsAmount = [tableView numberOfRowsInSection:[indexPath section]];
+    
     if (indexPath.row == rowsAmount-1) {
         TypeViewController *typeViewController = [[TypeViewController alloc]init];
         typeViewController.saveFormViewController = self;
         [self.navigationController pushViewController:typeViewController animated:YES];
-        
     }
-
 }
 
 - (void)didReceiveMemoryWarning
