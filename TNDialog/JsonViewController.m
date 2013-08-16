@@ -8,12 +8,12 @@
 
 #import "JsonViewController.h"
 #import "WebViewController.h"
+#import "MapViewController.h"
 @interface JsonViewController ()
 
 @end
 QRootElement *root;
-QEntryTableViewCell *cells;
-NSString *urlWeb;
+
 @implementation JsonViewController
 @synthesize selectedFile = _selectedFile;
 
@@ -21,7 +21,7 @@ NSString *urlWeb;
 {
     self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
-        // Custom initialization
+        
     }
     return self;
 }
@@ -29,7 +29,8 @@ NSString *urlWeb;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
+    self.title = _selectedFile;
     NSString *strPath = [[NSString alloc] initWithString: [_selectedFile stringByReplacingOccurrencesOfString:@".json" withString:@""] ];
     root = [[QRootElement alloc] initWithJSONFile:strPath];
 
@@ -45,14 +46,12 @@ NSString *urlWeb;
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-
     // Return the number of sections.
     return [root.sections count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-
     // Return the number of rows in the section.
     return ([((QSection*)[root.sections objectAtIndex:section]).elements count]);
 }
@@ -66,35 +65,38 @@ NSString *urlWeb;
     }
     
     // Configure the cell...
-    cells = [[root elementWithIndex:indexPath] getCellForTableView:nil controller:nil];
+    QEntryTableViewCell *cells = [[root elementWithIndex:indexPath] getCellForTableView:nil controller:nil];
     cell = cells;
     return cell;
 }
-
 
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     //Get string from json in document
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
                                                          NSUserDomainMask,
                                                          YES);
-    
     NSString *fullPath = [[paths lastObject] stringByAppendingPathComponent:_selectedFile];
     NSData *jsonData = [NSData dataWithContentsOfFile:fullPath];
-    
     NSMutableDictionary *dict = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:nil];
-    urlWeb = [[[[[dict objectForKey:@"sections"] objectAtIndex:0]objectForKey:@"elements"]objectAtIndex:0]objectForKey:@"url"];
 
     if ([[[[[[dict objectForKey:@"sections"] objectAtIndex:0]objectForKey:@"elements"]objectAtIndex:0]objectForKey:@"type"] isEqualToString:@"QWebElement"]) {
-               
+        NSString *urlWeb = [[[[[dict objectForKey:@"sections"] objectAtIndex:0]objectForKey:@"elements"]objectAtIndex:0]objectForKey:@"url"];       
         WebViewController *webViewController = [[WebViewController alloc]init];
         webViewController.urlWeb = urlWeb;
         [self.navigationController pushViewController:webViewController animated:YES];
     }
-    
+    else if ([[[[[[dict objectForKey:@"sections"] objectAtIndex:0]objectForKey:@"elements"]objectAtIndex:0]objectForKey:@"type"] isEqualToString:@"QMapElement"]) {
+        float latitude = [[[[[[dict objectForKey:@"sections"] objectAtIndex:0]objectForKey:@"elements"]objectAtIndex:0]objectForKey:@"lat"] doubleValue];
+        float longtitude = [[[[[[dict objectForKey:@"sections"] objectAtIndex:0]objectForKey:@"elements"]objectAtIndex:0]objectForKey:@"lng"] doubleValue];
+                
+        MapViewController *mapViewController = [[MapViewController alloc]init];
+        mapViewController.latitude = latitude;
+        mapViewController.longtitude = longtitude;
+        [self.navigationController pushViewController:mapViewController animated:YES];
+    }
     
 }
 

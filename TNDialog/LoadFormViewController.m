@@ -9,19 +9,20 @@
 #import "LoadFormViewController.h"
 #import "JsonViewController.h"
 @interface LoadFormViewController ()
-
 @end
-QEntryTableViewCell *cells;
+
 QRootElement *root;
 NSArray *jsonArray;
 UITableView *tableView;
+
 @implementation LoadFormViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
-        // Custom initialization
+        root = [[QRootElement alloc]init];
+        self.title = @"JSON Data";
     }
     return self;
 }
@@ -33,8 +34,6 @@ UITableView *tableView;
     NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     NSArray *dirContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:documentsDir error:nil];
     jsonArray = [dirContents filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self ENDSWITH '.json'"]];
-    
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -51,7 +50,6 @@ UITableView *tableView;
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-        NSLog(@"%@",jsonArray);
     return ([jsonArray count]);
 }
 
@@ -62,7 +60,6 @@ UITableView *tableView;
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    
     cell.textLabel.text = jsonArray[indexPath.row];
     return cell;
 }
@@ -71,12 +68,6 @@ UITableView *tableView;
     JsonViewController *jsonViewController = [[ JsonViewController alloc]init];
     jsonViewController.selectedFile = jsonArray[indexPath.row];
     [self.navigationController pushViewController:jsonViewController animated:YES];
-//    if (indexPath.row == rowsAmount-1) {
-//        TypeViewController *typeViewController = [[TypeViewController alloc]init];
-//        typeViewController.saveFormViewController = self;
-//        [self.navigationController pushViewController:typeViewController animated:YES];
-//        
-//    }
     
 }
 @end

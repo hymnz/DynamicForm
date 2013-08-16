@@ -23,7 +23,9 @@ UITableView *tableView;
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        ////Initial data 
+        ////Initial data
+        root = [[QRadioElement alloc]init];
+        self.title = @"Add";
         _dictSection = [[NSMutableDictionary alloc] init];
         _arrayElement = [[NSMutableArray alloc] init];
     }
@@ -39,7 +41,6 @@ UITableView *tableView;
     tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     tableView.delegate = self;
     tableView.dataSource = self;
-    tableView.backgroundColor = [UIColor blueColor];
     [self.view addSubview:tableView];
 
     //Add Save Button to navigationbar
@@ -53,8 +54,7 @@ UITableView *tableView;
     ///Init RootElent If Created Form has Element
     if ([_dictSection count] > 0) {
         root = [[QRootElement alloc]initWithJSON:_dictSection andData:nil];
-        
-        [tableView reloadData];
+        self.title = @"d"; [tableView reloadData];
     }
 }
 

@@ -47,7 +47,27 @@
     self = [self initWithJSON:jsonRoot andData:data];
     return self;
 }
-
+//Kan Add
+- (QRootElement *)initWithResourceJSONFile:(NSString *)jsonPath {
+    Class JSONSerialization = [QRootElement JSONParserClass];
+    NSAssert(JSONSerialization != NULL, @"No JSON serializer available!");
+    NSString * resourcePath = [[NSBundle mainBundle] resourcePath];
+    NSString *filePath = [[[resourcePath stringByAppendingString:@"/"] stringByAppendingString:jsonPath] stringByAppendingString:@".json"];
+    NSLog(@"%@",filePath);
+    NSError *jsonParsingError = nil;
+    // NSString *filePath = [[NSBundle mainBundle] pathForResource:jsonPath ofType:@"json"];
+    NSData *jsonData = [NSData dataWithContentsOfFile:filePath];
+    if (jsonData==nil)
+        NSLog(@"Couldn't read any data for JSON file named: %@", jsonPath);
+    
+    NSDictionary *jsonRoot = [JSONSerialization JSONObjectWithData:jsonData options:0 error:&jsonParsingError];
+    
+    if (jsonParsingError!=nil)
+        NSLog(@"Parsing error: %@", jsonParsingError.localizedDescription);
+    self = [self initWithJSON:jsonRoot andData:nil];
+    return self;
+}
+//
 - (QRootElement *)initWithJSON:(id)jsonRoot andData:(id)data {
 
     self = [[QRootBuilder new] buildWithObject:jsonRoot];

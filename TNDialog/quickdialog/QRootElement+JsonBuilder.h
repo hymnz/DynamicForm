@@ -23,6 +23,7 @@
 - (QRootElement *)initWithJSON:(id)parsedJson andData:(id)data;
 
 - (QRootElement *)initWithJSONFile:(NSString *)jsonPath andDataJSONFile:(NSString *)dataPath;
+- (QRootElement *)initWithResourceJSONFile:(NSString *)jsonPath;
 
 + (QRootElement *)rootForJSON:(NSString *)json;
 

@@ -7,8 +7,6 @@
 //
 
 #import "MainViewController.h"
-#import "SaveViewController.h"
-#import "LoadViewController.h"
 #import "SaveFormViewController.h"
 #import "LoadFormViewController.h"
 @interface MainViewController ()
@@ -31,7 +29,7 @@
     [super viewDidLoad];
 
     self.title = @"TNDialog";
-    _listData = [[NSMutableArray alloc]initWithObjects:@"Save",@"Load", @"Save Form",@"Load Form", nil];
+    _listData = [[NSMutableArray alloc]initWithObjects:@"Save Form",@"Load Form", nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -110,19 +108,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+
     if (indexPath.row == 0) {
-        SaveViewController *saveViewController = [[SaveViewController alloc]init];
-        [self.navigationController pushViewController:saveViewController animated:YES];
-    }
-    if (indexPath.row == 1) {
-        LoadViewController *loadViewController = [[LoadViewController alloc]init];
-        [self.navigationController pushViewController:loadViewController animated:YES];
-    }
-    if (indexPath.row == 2) {
         SaveFormViewController *saveFormViewController = [[SaveFormViewController alloc]init];
         [self.navigationController pushViewController:saveFormViewController animated:YES];
     }
-    if (indexPath.row == 3) {
+    if (indexPath.row == 1) {
         LoadFormViewController *loadFormViewController = [[LoadFormViewController alloc]init];
         [self.navigationController pushViewController:loadFormViewController animated:YES];
     }

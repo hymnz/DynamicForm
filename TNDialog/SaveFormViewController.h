@@ -11,5 +11,4 @@
 @interface SaveFormViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong) NSMutableDictionary *dictSection;
 @property(nonatomic,strong) NSMutableArray *arrayElement;
-@property(nonatomic,assign) int rowCount;
 @end

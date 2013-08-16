@@ -12,7 +12,6 @@
 		1C0BF0C117AF7E9700BC7297 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C0BF0C017AF7E9700BC7297 /* DetailViewController.m */; };
 		1C44E9C517A769CE00D21C88 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C44E9C417A769CE00D21C88 /* MapKit.framework */; };
 		1C44E9C717A769D600D21C88 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C44E9C617A769D600D21C88 /* CoreLocation.framework */; };
-		1C44EA0917A7978C00D21C88 /* LoadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C44EA0817A7978B00D21C88 /* LoadViewController.m */; };
 		1C44EA9217A79F0E00D21C88 /* DOAutocompleteTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C44EA0E17A79F0E00D21C88 /* DOAutocompleteTextField.m */; };
 		1C44EA9317A79F0E00D21C88 /* NSMutableArray+IMSExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C44EA1017A79F0E00D21C88 /* NSMutableArray+IMSExtensions.m */; };
 		1C44EA9417A79F0E00D21C88 /* NSMutableArray+MoveObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C44EA1217A79F0E00D21C88 /* NSMutableArray+MoveObject.m */; };
@@ -77,7 +76,6 @@
 		1C44EACF17A79F0E00D21C88 /* QWebElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C44EA8D17A79F0E00D21C88 /* QWebElement.m */; };
 		1C44EAD017A79F0E00D21C88 /* QWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C44EA8F17A79F0E00D21C88 /* QWebViewController.m */; };
 		1C44EAD117A79F0E00D21C88 /* UIColor+ColorUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C44EA9117A79F0E00D21C88 /* UIColor+ColorUtilities.m */; };
-		1CF2197C17A90E8800E54A40 /* a.json in Resources */ = {isa = PBXBuildFile; fileRef = 1CF2197B17A90E8700E54A40 /* a.json */; };
 		1CF96E5317A660C100FD16F2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CF96E5217A660C100FD16F2 /* UIKit.framework */; };
 		1CF96E5517A660C100FD16F2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CF96E5417A660C100FD16F2 /* Foundation.framework */; };
 		1CF96E5717A660C100FD16F2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CF96E5617A660C100FD16F2 /* CoreGraphics.framework */; };
@@ -88,11 +86,19 @@
 		1CF96E6717A660C100FD16F2 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CF96E6617A660C100FD16F2 /* Default@2x.png */; };
 		1CF96E6917A660C100FD16F2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1CF96E6817A660C100FD16F2 /* Default-568h@2x.png */; };
 		1CF96E7717A6611A00FD16F2 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF96E7617A6611A00FD16F2 /* MainViewController.m */; };
-		1CF96E8017A6642400FD16F2 /* SaveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF96E7F17A6642400FD16F2 /* SaveViewController.m */; };
 		1CFAF68517BCA7E2009A1942 /* LoadFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFAF68417BCA7E1009A1942 /* LoadFormViewController.m */; };
 		1CFAF68817BCAD7F009A1942 /* JsonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFAF68717BCAD7E009A1942 /* JsonViewController.m */; };
-		1CFAF68A17BCC0CC009A1942 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1CFAF68917BCC0CB009A1942 /* View.xib */; };
 		1CFAF68D17BCD58C009A1942 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFAF68C17BCD58C009A1942 /* WebViewController.m */; };
+		1CFE434817BDE075005DF537 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFE434717BDE075005DF537 /* MapViewController.m */; };
+		1CFE434E17BDF5E4005DF537 /* Annotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFE434D17BDF5E4005DF537 /* Annotation.m */; };
+		1CFE435917BE21EF005DF537 /* Badge.json in Resources */ = {isa = PBXBuildFile; fileRef = 1CFE435217BE21EF005DF537 /* Badge.json */; };
+		1CFE435A17BE21EF005DF537 /* Button.json in Resources */ = {isa = PBXBuildFile; fileRef = 1CFE435317BE21EF005DF537 /* Button.json */; };
+		1CFE435B17BE21EF005DF537 /* Entry.json in Resources */ = {isa = PBXBuildFile; fileRef = 1CFE435417BE21EF005DF537 /* Entry.json */; };
+		1CFE435C17BE21EF005DF537 /* Label.json in Resources */ = {isa = PBXBuildFile; fileRef = 1CFE435517BE21EF005DF537 /* Label.json */; };
+		1CFE435D17BE21EF005DF537 /* Map.json in Resources */ = {isa = PBXBuildFile; fileRef = 1CFE435617BE21EF005DF537 /* Map.json */; };
+		1CFE435E17BE21EF005DF537 /* Text.json in Resources */ = {isa = PBXBuildFile; fileRef = 1CFE435717BE21EF005DF537 /* Text.json */; };
+		1CFE435F17BE21EF005DF537 /* Web.json in Resources */ = {isa = PBXBuildFile; fileRef = 1CFE435817BE21EF005DF537 /* Web.json */; };
+		1CFE436117BE2D64005DF537 /* Boolean.json in Resources */ = {isa = PBXBuildFile; fileRef = 1CFE436017BE2D64005DF537 /* Boolean.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -104,8 +110,6 @@
 		1C0BF0C017AF7E9700BC7297 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		1C44E9C417A769CE00D21C88 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		1C44E9C617A769D600D21C88 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		1C44EA0717A7978B00D21C88 /* LoadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadViewController.h; sourceTree = "<group>"; };
-		1C44EA0817A7978B00D21C88 /* LoadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadViewController.m; sourceTree = "<group>"; };
 		1C44EA0D17A79F0E00D21C88 /* DOAutocompleteTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOAutocompleteTextField.h; sourceTree = "<group>"; };
 		1C44EA0E17A79F0E00D21C88 /* DOAutocompleteTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOAutocompleteTextField.m; sourceTree = "<group>"; };
 		1C44EA0F17A79F0E00D21C88 /* NSMutableArray+IMSExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+IMSExtensions.h"; sourceTree = "<group>"; };
@@ -239,7 +243,6 @@
 		1C44EA8F17A79F0E00D21C88 /* QWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWebViewController.m; sourceTree = "<group>"; };
 		1C44EA9017A79F0E00D21C88 /* UIColor+ColorUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ColorUtilities.h"; sourceTree = "<group>"; };
 		1C44EA9117A79F0E00D21C88 /* UIColor+ColorUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ColorUtilities.m"; sourceTree = "<group>"; };
-		1CF2197B17A90E8700E54A40 /* a.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = a.json; sourceTree = "<group>"; };
 		1CF96E4F17A660C100FD16F2 /* TNDialog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TNDialog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CF96E5217A660C100FD16F2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1CF96E5417A660C100FD16F2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -255,15 +258,24 @@
 		1CF96E6817A660C100FD16F2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		1CF96E7517A6611A00FD16F2 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		1CF96E7617A6611A00FD16F2 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		1CF96E7E17A6642400FD16F2 /* SaveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveViewController.h; sourceTree = "<group>"; };
-		1CF96E7F17A6642400FD16F2 /* SaveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveViewController.m; sourceTree = "<group>"; };
 		1CFAF68317BCA7E1009A1942 /* LoadFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadFormViewController.h; sourceTree = "<group>"; };
 		1CFAF68417BCA7E1009A1942 /* LoadFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadFormViewController.m; sourceTree = "<group>"; };
 		1CFAF68617BCAD7E009A1942 /* JsonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonViewController.h; sourceTree = "<group>"; };
 		1CFAF68717BCAD7E009A1942 /* JsonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonViewController.m; sourceTree = "<group>"; };
-		1CFAF68917BCC0CB009A1942 /* View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
 		1CFAF68B17BCD58C009A1942 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		1CFAF68C17BCD58C009A1942 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		1CFE434617BDE075005DF537 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		1CFE434717BDE075005DF537 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		1CFE434C17BDF5E4005DF537 /* Annotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Annotation.h; sourceTree = "<group>"; };
+		1CFE434D17BDF5E4005DF537 /* Annotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Annotation.m; sourceTree = "<group>"; };
+		1CFE435217BE21EF005DF537 /* Badge.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Badge.json; sourceTree = "<group>"; };
+		1CFE435317BE21EF005DF537 /* Button.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Button.json; sourceTree = "<group>"; };
+		1CFE435417BE21EF005DF537 /* Entry.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Entry.json; sourceTree = "<group>"; };
+		1CFE435517BE21EF005DF537 /* Label.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Label.json; sourceTree = "<group>"; };
+		1CFE435617BE21EF005DF537 /* Map.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Map.json; sourceTree = "<group>"; };
+		1CFE435717BE21EF005DF537 /* Text.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Text.json; sourceTree = "<group>"; };
+		1CFE435817BE21EF005DF537 /* Web.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Web.json; sourceTree = "<group>"; };
+		1CFE436017BE2D64005DF537 /* Boolean.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Boolean.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -454,29 +466,13 @@
 		1CF96E5817A660C100FD16F2 /* TNDialog */ = {
 			isa = PBXGroup;
 			children = (
-				1CF2197B17A90E8700E54A40 /* a.json */,
 				1C44EA0C17A79F0E00D21C88 /* quickdialog */,
 				1CF96E6117A660C100FD16F2 /* AppDelegate.h */,
 				1CF96E6217A660C100FD16F2 /* AppDelegate.m */,
 				1CF96E7517A6611A00FD16F2 /* MainViewController.h */,
 				1CF96E7617A6611A00FD16F2 /* MainViewController.m */,
-				1CF96E7E17A6642400FD16F2 /* SaveViewController.h */,
-				1CF96E7F17A6642400FD16F2 /* SaveViewController.m */,
-				1C44EA0717A7978B00D21C88 /* LoadViewController.h */,
-				1C44EA0817A7978B00D21C88 /* LoadViewController.m */,
-				1C0BF0B117AF5DBF00BC7297 /* SaveFormViewController.h */,
-				1C0BF0B217AF5DBF00BC7297 /* SaveFormViewController.m */,
-				1C0BF0B617AF779F00BC7297 /* TypeViewController.h */,
-				1C0BF0B717AF779F00BC7297 /* TypeViewController.m */,
-				1C0BF0BF17AF7E9700BC7297 /* DetailViewController.h */,
-				1C0BF0C017AF7E9700BC7297 /* DetailViewController.m */,
-				1CFAF68317BCA7E1009A1942 /* LoadFormViewController.h */,
-				1CFAF68417BCA7E1009A1942 /* LoadFormViewController.m */,
-				1CFAF68617BCAD7E009A1942 /* JsonViewController.h */,
-				1CFAF68717BCAD7E009A1942 /* JsonViewController.m */,
-				1CFAF68B17BCD58C009A1942 /* WebViewController.h */,
-				1CFAF68C17BCD58C009A1942 /* WebViewController.m */,
-				1CFAF68917BCC0CB009A1942 /* View.xib */,
+				1CFE434F17BE0812005DF537 /* SaveForm */,
+				1CFE435017BE0829005DF537 /* LoadForm */,
 				1CF96E5917A660C100FD16F2 /* Supporting Files */,
 			);
 			path = TNDialog;
@@ -494,6 +490,52 @@
 				1CF96E6817A660C100FD16F2 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1CFE434F17BE0812005DF537 /* SaveForm */ = {
+			isa = PBXGroup;
+			children = (
+				1C0BF0B117AF5DBF00BC7297 /* SaveFormViewController.h */,
+				1C0BF0B217AF5DBF00BC7297 /* SaveFormViewController.m */,
+				1C0BF0B617AF779F00BC7297 /* TypeViewController.h */,
+				1C0BF0B717AF779F00BC7297 /* TypeViewController.m */,
+				1C0BF0BF17AF7E9700BC7297 /* DetailViewController.h */,
+				1C0BF0C017AF7E9700BC7297 /* DetailViewController.m */,
+			);
+			name = SaveForm;
+			sourceTree = "<group>";
+		};
+		1CFE435017BE0829005DF537 /* LoadForm */ = {
+			isa = PBXGroup;
+			children = (
+				1CFAF68317BCA7E1009A1942 /* LoadFormViewController.h */,
+				1CFAF68417BCA7E1009A1942 /* LoadFormViewController.m */,
+				1CFAF68617BCAD7E009A1942 /* JsonViewController.h */,
+				1CFAF68717BCAD7E009A1942 /* JsonViewController.m */,
+				1CFAF68B17BCD58C009A1942 /* WebViewController.h */,
+				1CFAF68C17BCD58C009A1942 /* WebViewController.m */,
+				1CFE434617BDE075005DF537 /* MapViewController.h */,
+				1CFE434717BDE075005DF537 /* MapViewController.m */,
+				1CFE434C17BDF5E4005DF537 /* Annotation.h */,
+				1CFE434D17BDF5E4005DF537 /* Annotation.m */,
+				1CFE435117BE21D8005DF537 /* Resource */,
+			);
+			name = LoadForm;
+			sourceTree = "<group>";
+		};
+		1CFE435117BE21D8005DF537 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				1CFE436017BE2D64005DF537 /* Boolean.json */,
+				1CFE435217BE21EF005DF537 /* Badge.json */,
+				1CFE435317BE21EF005DF537 /* Button.json */,
+				1CFE435417BE21EF005DF537 /* Entry.json */,
+				1CFE435517BE21EF005DF537 /* Label.json */,
+				1CFE435617BE21EF005DF537 /* Map.json */,
+				1CFE435717BE21EF005DF537 /* Text.json */,
+				1CFE435817BE21EF005DF537 /* Web.json */,
+			);
+			name = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -547,12 +589,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1CF2197C17A90E8800E54A40 /* a.json in Resources */,
 				1CF96E5D17A660C100FD16F2 /* InfoPlist.strings in Resources */,
 				1CF96E6517A660C100FD16F2 /* Default.png in Resources */,
 				1CF96E6717A660C100FD16F2 /* Default@2x.png in Resources */,
 				1CF96E6917A660C100FD16F2 /* Default-568h@2x.png in Resources */,
-				1CFAF68A17BCC0CC009A1942 /* View.xib in Resources */,
+				1CFE435917BE21EF005DF537 /* Badge.json in Resources */,
+				1CFE435A17BE21EF005DF537 /* Button.json in Resources */,
+				1CFE435B17BE21EF005DF537 /* Entry.json in Resources */,
+				1CFE435C17BE21EF005DF537 /* Label.json in Resources */,
+				1CFE435D17BE21EF005DF537 /* Map.json in Resources */,
+				1CFE435E17BE21EF005DF537 /* Text.json in Resources */,
+				1CFE435F17BE21EF005DF537 /* Web.json in Resources */,
+				1CFE436117BE2D64005DF537 /* Boolean.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -566,8 +614,6 @@
 				1CF96E5F17A660C100FD16F2 /* main.m in Sources */,
 				1CF96E6317A660C100FD16F2 /* AppDelegate.m in Sources */,
 				1CF96E7717A6611A00FD16F2 /* MainViewController.m in Sources */,
-				1CF96E8017A6642400FD16F2 /* SaveViewController.m in Sources */,
-				1C44EA0917A7978C00D21C88 /* LoadViewController.m in Sources */,
 				1C44EA9217A79F0E00D21C88 /* DOAutocompleteTextField.m in Sources */,
 				1C44EA9317A79F0E00D21C88 /* NSMutableArray+IMSExtensions.m in Sources */,
 				1C44EA9417A79F0E00D21C88 /* NSMutableArray+MoveObject.m in Sources */,
@@ -638,6 +684,8 @@
 				1CFAF68517BCA7E2009A1942 /* LoadFormViewController.m in Sources */,
 				1CFAF68817BCAD7F009A1942 /* JsonViewController.m in Sources */,
 				1CFAF68D17BCD58C009A1942 /* WebViewController.m in Sources */,
+				1CFE434817BDE075005DF537 /* MapViewController.m in Sources */,
+				1CFE434E17BDF5E4005DF537 /* Annotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

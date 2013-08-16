@@ -10,10 +10,6 @@
 @interface DetailViewController ()
 
 @end
-UIAlertView *alert;
-UITextField *inputTitle;
-NSString *titleName;
-NSString *strPath;
 QRootElement *root;
 int rowCount;
 @implementation DetailViewController
@@ -23,7 +19,7 @@ int rowCount;
 {
     self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
-        // Custom initialization
+        self.title = @"Detail";
     }
     return self;
 }
@@ -32,45 +28,38 @@ int rowCount;
 {
     [super viewDidLoad];
 
-    //Test
-//    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-//    NSArray *dirContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:documentsDir error:nil];
-//    NSArray *jsonArray = [dirContents filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self ENDSWITH '.json'"]];
-    
-    
-//        strPath = [[NSString alloc] initWithString: [filePath stringByReplacingOccurrencesOfString:@".json" withString:@""] ];
     if ([_selectedType isEqualToString:@"QButtonElement"] || [_selectedType isEqualToString:@"QDateTimeInlineElement"] || [_selectedType isEqualToString:@"QDecimalElement"] || [_selectedType isEqualToString:@"QFloatElement"]) {
-        root = [[QRootElement alloc] initWithJSONFile:@"Button"];
+        root = [[QRootElement alloc] initWithResourceJSONFile:@"Button"];
     }
     else if ([_selectedType isEqualToString:@"QLabelElement"]) {
-        root = [[QRootElement alloc] initWithJSONFile:@"Label"];
+        root = [[QRootElement alloc] initWithResourceJSONFile:@"Label"];
     }
     else if ([_selectedType isEqualToString:@"QBadgeElement"]) {
-        root = [[QRootElement alloc] initWithJSONFile:@"Badge"];
+        root = [[QRootElement alloc] initWithResourceJSONFile:@"Badge"];
     }
     else if ([_selectedType isEqualToString:@"QBooleanElement"]) {
-        root = [[QRootElement alloc] initWithJSONFile:@"Boolean"];
+        root = [[QRootElement alloc] initWithResourceJSONFile:@"Boolean"];
     }
     else if ([_selectedType isEqualToString:@"QEntryElement"]) {
-        root = [[QRootElement alloc] initWithJSONFile:@"Entry"];
+        root = [[QRootElement alloc] initWithResourceJSONFile:@"Entry"];
     }
     else if ([_selectedType isEqualToString:@"QMapElement"]) {
-        root = [[QRootElement alloc] initWithJSONFile:@"Map"];
+        root = [[QRootElement alloc] initWithResourceJSONFile:@"Map"];
     }
     else if ([_selectedType isEqualToString:@"QTextElement"]) {
-        root = [[QRootElement alloc] initWithJSONFile:@"Text"];
+        root = [[QRootElement alloc] initWithResourceJSONFile:@"Text"];
     }
     else if ([_selectedType isEqualToString:@"QEntryElement"]) {
-        root = [[QRootElement alloc] initWithJSONFile:@"Entry"];
+        root = [[QRootElement alloc] initWithResourceJSONFile:@"Entry"];
     }
     else if ([_selectedType isEqualToString:@"QWebElement"]) {
-        root = [[QRootElement alloc] initWithJSONFile:@"Web"];
+        root = [[QRootElement alloc] initWithResourceJSONFile:@"Web"];
     }
     else if ([_selectedType isEqualToString:@"QColorPickerElement"] || [_selectedType isEqualToString:@"QSegmentedElement"] || [_selectedType isEqualToString:@"QPickerElement"]) {
-        root = [[QRootElement alloc] initWithJSONFile:@"Picker"];
+        root = [[QRootElement alloc] initWithResourceJSONFile:@"Picker"];
     }
     else if ([_selectedType isEqualToString:@"QRadioElement"]) {
-        root = [[QRootElement alloc] initWithJSONFile:@"Radio"];
+        root = [[QRootElement alloc] initWithResourceJSONFile:@"Radio"];
     }
     
     //Add Save Button to navigationbar
@@ -98,7 +87,6 @@ int rowCount;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"%@",indexPath);
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
@@ -112,13 +100,20 @@ int rowCount;
 -(void)saveData:(id)sender
 {
     NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
-
     [dict setObject:_selectedType forKey:@"type"];
+    
     for (int i=0; i<rowCount; i++) {
-        [dict setObject:((QEntryTableViewCell*)[[root elementWithIndex:[NSIndexPath indexPathForItem:i inSection:0]] getCellForTableView:nil controller:nil]).textField.text forKey:((QEntryTableViewCell*)[[root elementWithIndex:[NSIndexPath indexPathForItem:i inSection:0]] getCellForTableView:nil controller:nil]).textLabel.text];
+        QElement *element = [root elementWithIndex:[NSIndexPath indexPathForItem:i inSection:0]];
+        if ([element isKindOfClass:[QEntryElement class]]){
+            [dict setObject:((QEntryElement*)element).textValue forKey:((QEntryElement*)element).title];
+        }
+        else if ([element isKindOfClass:[QBooleanElement class]]){
+            [dict setObject:[NSNumber numberWithBool:((QBooleanElement*)element).boolValue]  forKey:((QBooleanElement*)element).title];
+        }
+        
+//        [dict setObject:((QEntryTableViewCell*)[[root elementWithIndex:[NSIndexPath indexPathForItem:i inSection:0]] getCellForTableView:nil controller:nil]).textField.text forKey:((QEntryTableViewCell*)[[root elementWithIndex:[NSIndexPath indexPathForItem:i inSection:0]] getCellForTableView:nil controller:nil]).textLabel.text];
     }
     
-    //    NSMutableArray *arrayElement = [[NSMutableArray alloc] init];
     [_typeViewController.saveFormViewController.arrayElement addObject:dict];
     
     NSMutableDictionary *dictElement = [[NSMutableDictionary alloc] init];
@@ -134,22 +129,6 @@ int rowCount;
     
     [self.navigationController popToViewController:[[self.navigationController viewControllers] objectAtIndex:1] animated:YES];
     
-    //Old
-//    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-//    NSString *filePath = [[[documentsDir stringByAppendingString:@"/"] stringByAppendingString:@"tmp"] stringByAppendingString:@".json"];
-//    NSError *error = nil;
-//    [[self jsonFromtitleName:titleName andtypeName:_selectedType] writeToFile:filePath options:NSDataWritingAtomic error:&error];
-//    NSLog(@"Write returned error: %@", [error localizedDescription]);
-
-    //Test
-   
-    //_typeViewController.saveFormViewController.data = [self jsonFromtitleName:titleName andtypeName:_selectedType];
-
-//
-//    alert = [[UIAlertView alloc] initWithTitle:@"Save" message:@"Input file name." delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:@"Save", nil];
-//    alert.delegate = self;
-//    [alert setAlertViewStyle:UIAlertViewStylePlainTextInput];
-//    [alert show];
 }
 
 -(NSData*)jsonFromtitleName:(NSString*)title andtypeName:(NSString*)type
@@ -174,7 +153,6 @@ int rowCount;
     [_typeViewController.saveFormViewController.dictSection setValue:arraySection forKey:@"sections"];
     [_typeViewController.saveFormViewController.dictSection setValue:[NSNumber numberWithBool:YES] forKey:@"grouped"];
     
-    //    NSDictionary* dic = @{@"grouped" : @"true",@"section" :@{@"Username" : @"me", @"Firstname" : firstName, @"Lastname" : lastName}};
     NSData* json = [NSJSONSerialization dataWithJSONObject:_typeViewController.saveFormViewController.dictSection options:0 error:nil];
     return json;
 }
