@@ -15,7 +15,6 @@ UITextField *inputTitle;
 NSString *titleName;
 NSString *strPath;
 QRootElement *root;
-QEntryTableViewCell *cells;
 int rowCount;
 @implementation DetailViewController
 @synthesize typeViewController = _typeViewController;
@@ -33,8 +32,6 @@ int rowCount;
 {
     [super viewDidLoad];
 
-
-    
     //Test
 //    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
 //    NSArray *dirContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:documentsDir error:nil];
@@ -76,11 +73,9 @@ int rowCount;
         root = [[QRootElement alloc] initWithJSONFile:@"Radio"];
     }
     
-    UIButton *saveButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    saveButton.frame = CGRectMake(150, 200, 60, 40);
-    [saveButton setTitle:@"Save" forState:UIControlStateNormal];
-    [saveButton addTarget:self action:@selector(saveData) forControlEvents:UIControlEventTouchDown];
-    [self.view addSubview:saveButton];
+    //Add Save Button to navigationbar
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveData:)];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -110,12 +105,11 @@ int rowCount;
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    cells = [[root elementWithIndex:indexPath] getCellForTableView:nil controller:nil];
-    cell = cells;
+    cell = [[root elementWithIndex:indexPath] getCellForTableView:nil controller:nil];
     return cell;
 }
 
--(void)saveData
+-(void)saveData:(id)sender
 {
     NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
 

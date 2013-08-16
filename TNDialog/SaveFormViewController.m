@@ -113,8 +113,7 @@ UITableView *tableView;
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    NSInteger rowsAmount;
-    rowsAmount = [tableView numberOfRowsInSection:[indexPath section]];
+    NSInteger rowsAmount = [tableView numberOfRowsInSection:[indexPath section]];
     
     if (indexPath.row == rowsAmount-1 ) {
         cell.textLabel.text = @"Add Field";
@@ -129,8 +128,7 @@ UITableView *tableView;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    NSInteger rowsAmount;
-    rowsAmount = [tableView numberOfRowsInSection:[indexPath section]];
+    NSInteger rowsAmount = [tableView numberOfRowsInSection:[indexPath section]];
     
     if (indexPath.row == rowsAmount-1) {
         TypeViewController *typeViewController = [[TypeViewController alloc]init];
