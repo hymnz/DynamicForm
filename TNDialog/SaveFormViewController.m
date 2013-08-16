@@ -14,13 +14,14 @@
 NSInteger rowsAmount;
 QEntryTableViewCell *cells;
 QRootElement *root;
-int rowCount;
+
 UITableView *tableView;
 UIButton *saveButton;
 UIAlertView *alert;
 @implementation SaveFormViewController
 @synthesize dictSection = _dictSection;
 @synthesize arrayElement = _arrayElement;
+@synthesize rowCount = _rowCount;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -35,12 +36,13 @@ UIAlertView *alert;
 {
     if ([_dictSection count] > 0) {
         root = [[QRootElement alloc]initWithJSON:_dictSection andData:nil];
+        [tableView reloadData];
     }
-    [tableView reloadData];
+    
     
     
     //Save Button
-    [saveButton setFrame: CGRectMake(tableView.frame.size.width/2 - 30,50*rowCount, 60, 30)];
+    [saveButton setFrame: CGRectMake(tableView.frame.size.width/2 - 30,80 + (_rowCount * 40), 60, 30)];
     [saveButton setTitle:@"SAVE" forState:UIControlStateNormal];
     [saveButton addTarget:self action:@selector(saveForm) forControlEvents:UIControlEventTouchDown];
     [tableView addSubview:saveButton];
@@ -54,7 +56,7 @@ UIAlertView *alert;
     saveButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [saveButton setFrame:CGRectMake(tableView.frame.size.width/2 - 30,50, 60, 30)];
     
-    rowCount = 0;
+    _rowCount = 0;
 
     
     NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
@@ -76,7 +78,7 @@ UIAlertView *alert;
 //    [root addSection:sectionSamples];
     
     //TableVeiw
-    tableView = [[UITableView alloc] initWithFrame:CGRectMake(10,40, 300, 500) style:UITableViewStyleGrouped];
+    tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,0, self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStyleGrouped];
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.backgroundColor = [UIColor blueColor];
@@ -122,7 +124,7 @@ UIAlertView *alert;
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    rowCount++;
+    
     return ([((QSection*)[root.sections objectAtIndex:section]).elements count]+1);
 }
 

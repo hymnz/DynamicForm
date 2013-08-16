@@ -10,6 +10,7 @@
 #import "SaveViewController.h"
 #import "LoadViewController.h"
 #import "SaveFormViewController.h"
+#import "LoadFormViewController.h"
 @interface MainViewController ()
 
 @end
@@ -30,7 +31,7 @@
     [super viewDidLoad];
 
     self.title = @"TNDialog";
-    _listData = [[NSMutableArray alloc]initWithObjects:@"Save",@"Load", @"Save Form", nil];
+    _listData = [[NSMutableArray alloc]initWithObjects:@"Save",@"Load", @"Save Form",@"Load Form", nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -120,6 +121,10 @@
     if (indexPath.row == 2) {
         SaveFormViewController *saveFormViewController = [[SaveFormViewController alloc]init];
         [self.navigationController pushViewController:saveFormViewController animated:YES];
+    }
+    if (indexPath.row == 3) {
+        LoadFormViewController *loadFormViewController = [[LoadFormViewController alloc]init];
+        [self.navigationController pushViewController:loadFormViewController animated:YES];
     }
 }
 

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SaveFormViewController.h"
 @interface TypeViewController : UITableViewController<UITableViewDelegate,UITableViewDataSource>
-@property(nonatomic,strong) NSMutableArray *listType;
+@property(nonatomic,strong) NSMutableArray *listFullNameType;
+@property(nonatomic,strong) NSMutableArray *listShortNameType;
 @property(nonatomic,strong) SaveFormViewController *saveFormViewController;
 @end

@@ -19,8 +19,12 @@
 {
     self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
-        _listType = [[NSMutableArray alloc]initWithObjects:@"QButtonElement", @"QDateTimeInlineElement", @"QDecimalElement", @"QFloatElement"
+        _listFullNameType = [[NSMutableArray alloc]initWithObjects:@"QButtonElement", @"QDateTimeInlineElement", @"QDecimalElement", @"QFloatElement"
                      ,@"QLabelElement",@"QBadgeElement",@"QBooleanElement",@"QEntryElement",@"QMapElement",@"QTextElement",@"QWebElement"
+                     ,@"QColorPickerElement",@"QSegmentedElement",@"QPickerElement",@"QRadioElement",nil];
+        
+        _listShortNameType = [[NSMutableArray alloc]initWithObjects:@"Button", @"QDateTimeInlineElement", @"QDecimalElement", @"QFloatElement"
+                     ,@"Label",@"Badge",@"Boolean",@"TextField",@"Map",@"Text",@"Web"
                      ,@"QColorPickerElement",@"QSegmentedElement",@"QPickerElement",@"QRadioElement",nil];
     }
     return self;
@@ -48,7 +52,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [_listType count];
+    return [_listFullNameType count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -58,7 +62,7 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    cell.textLabel.text = _listType[indexPath.row];
+    cell.textLabel.text = _listShortNameType[indexPath.row];
     return cell;
 }
 
@@ -106,9 +110,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     DetailViewController *detailViewController = [[DetailViewController alloc]init];
-    for (int i=0; i<[_listType count]; i++) {
+    for (int i=0; i<[_listFullNameType count]; i++) {
         if (indexPath.row == i) {
-            detailViewController.selectedType = [_listType objectAtIndex:indexPath.row];
+            detailViewController.selectedType = [_listFullNameType objectAtIndex:indexPath.row];
         }
     }
     detailViewController.typeViewController = self;

@@ -42,7 +42,7 @@ int rowCount;
     
     
 //        strPath = [[NSString alloc] initWithString: [filePath stringByReplacingOccurrencesOfString:@".json" withString:@""] ];
-    if ([_selectedType isEqualToString:@"QButtonElement"] || [_selectedType isEqualToString:@"QDateTimeInlineElement"] || [_selectedType isEqualToString:@"QDecimalElement"] || [_selectedType isEqualToString:@"QfloatElement"]) {
+    if ([_selectedType isEqualToString:@"QButtonElement"] || [_selectedType isEqualToString:@"QDateTimeInlineElement"] || [_selectedType isEqualToString:@"QDecimalElement"] || [_selectedType isEqualToString:@"QFloatElement"]) {
         root = [[QRootElement alloc] initWithJSONFile:@"Button"];
     }
     else if ([_selectedType isEqualToString:@"QLabelElement"]) {
@@ -77,7 +77,7 @@ int rowCount;
     }
     
     UIButton *saveButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    saveButton.frame = CGRectMake(150, 200, 60, 40);
+    saveButton.frame = CGRectMake(self.view.frame.size.width/2 -30, 60+(40*[((QSection*)[root.sections objectAtIndex:0]).elements count]), 60, 40);
     [saveButton setTitle:@"Save" forState:UIControlStateNormal];
     [saveButton addTarget:self action:@selector(saveData) forControlEvents:UIControlEventTouchDown];
     [self.view addSubview:saveButton];
@@ -117,6 +117,8 @@ int rowCount;
 
 -(void)saveData
 {
+    _typeViewController.saveFormViewController.rowCount++;
+    
     NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
 
     [dict setObject:_selectedType forKey:@"type"];
